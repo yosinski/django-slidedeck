@@ -1,0 +1,44 @@
+{% extends 'main/header_menu.html' %}
+
+
+
+{% block content %}
+
+<div class="slidedeck">
+<h1><a href="{% url index %}">&laquo;</a> <a href="{% url slides slidedeck.slug %}">{{ slidedeck.title }}</a></h1>
+<h2>{{ slidedeck.presenter }}</h2>
+<p class="abstract">{{ slidedeck.abstract }}</p>
+
+
+
+{% if slidedeck.pdf %}
+
+<a href="{{ slidedeck.pdf.url }}">(get pdf)</a>
+
+{% with slidedeck.getSlides as slides %}
+
+<div class="lighttable">
+<li>
+
+{% for slide in slides %}
+<div class="slide">
+<img src="{{ slide.imgThumbUrl }}" alt="Slide: {{ slide.text }}" />
+</div>
+{% endfor %}
+
+<div class="clearboth"></div>
+
+</li>
+</div>
+
+{% endwith %}
+
+{% else %}
+<p>No pdf found</p>
+{% endif %}
+
+
+</div>
+
+
+{% endblock %}

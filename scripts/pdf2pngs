@@ -1,0 +1,17 @@
+#! /bin/bash -x
+
+PDF="$1"
+PNG_ROOT="$2"
+SIZE_INTERMEDIATE="$3"
+SIZE_FINAL="$4"
+EXTRA_NAME="$5"
+
+gs -sDEVICE=pngalpha -dNOPAUSE -sOutputFile="${PNG_ROOT}_%03d.png" -r150 "$PDF" < /dev/null
+for file in `ls ${PNG_ROOT}_???.png`; do
+    echo $file
+    convert -layers flatten -background white "$file" "$file.tmp.png"
+    convert "$file.tmp.png" -resize "$SIZE_INTERMEDIATEx$SIZE_INTERMEDIATE>" "$file.tmp2.png"
+    rm "$file.tmp.png"
+    mv "$file.tmp2.png" "$file"
+    convert "$file" -resize $SIZE_FINALx$SIZE_FINAL "${file%.*}${EXTRA_NAME}.png"
+done

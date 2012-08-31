@@ -4,6 +4,14 @@
 
 {% block content %}
 
-<p>Hello World.</p>
+<h1>Welcome</h1>
+
+{% for slidedeck in slidedecks %}
+<div class="slidedeck">
+<h1><a href="{% url slides slidedeck.slug %}">{{ slidedeck.title }}</a></h1>
+<h2>{{ slidedeck.presenter }}</h2>
+<p class="abstract">{{ slidedeck.abstract }}</p>
+</div>
+{% endfor %}
 
 {% endblock %}
