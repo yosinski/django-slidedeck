@@ -6,8 +6,8 @@
 
 <div class="slidedeck">
 <h1><a href="{% url index %}">&laquo;</a> <a href="{% url slides slidedeck.slug %}">{{ slidedeck.title }}</a></h1>
-<h2>{{ slidedeck.presenter }}</h2>
-<p class="abstract">{{ slidedeck.abstract }}</p>
+<h2>{{ slidedeck.presenter|safe }}</h2>
+<p class="abstract">{{ slidedeck.abstract|safe }}</p>
 
 
 

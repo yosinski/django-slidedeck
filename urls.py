@@ -9,7 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # main
     url(r'^$', 'main.views.index', name='index'),
-    url(r'^slides/(.*)$', 'main.views.slides', name='slides'),
+    url(r'^s/(.*)$', 'main.views.slides', name='slides'),
 
     # just for testing
     url(r'^fake500/$',  'main.views.fake500',                      name='fake500'),
