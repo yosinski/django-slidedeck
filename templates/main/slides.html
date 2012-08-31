@@ -5,15 +5,20 @@
 {% block content %}
 
 <div class="slidedeck">
-<h1><a href="{% url index %}">&laquo;</a> <a href="{% url slides slidedeck.slug %}">{{ slidedeck.title }}</a></h1>
+
+<div id="slideheaders">
+<h1><a href="{% url index %}">&laquo;</a> {{ slidedeck.title }}</h1>
+{% if slidedeck.pdf %}
+{% with slidedeck.getSlides as slides %}
+<div class="pdflink"><a href="{{ slidedeck.pdf.url }}"><img src="{{ slides.0.imgThumbUrl }}" alt="first slide" /><br />(pdf)</a></div>
+{% endwith %}
+{% endif %}
 <h2>{{ slidedeck.presenter|safe }}</h2>
 <p class="abstract">{{ slidedeck.abstract|safe }}</p>
-
+</div>
 
 
 {% if slidedeck.pdf %}
-
-<a href="{{ slidedeck.pdf.url }}">(get pdf)</a>
 
 {% with slidedeck.getSlides as slides %}
 
@@ -22,7 +27,7 @@
 
 {% for slide in slides %}
 <div class="slide">
-<img src="{{ slide.imgThumbUrl }}" alt="Slide: {{ slide.text }}" />
+<img src="{{ slide.imgUrl }}" alt="Slide: {{ slide.text }}" />
 </div>
 {% endfor %}
 

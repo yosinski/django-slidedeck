@@ -59,7 +59,7 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 a {
-    color: #c17f2b;
+    color: #ffc;
     text-decoration: none;
     border-bottom: 1px dotted;
 }
@@ -89,6 +89,14 @@ strong {
 .clearboth {
 	clear: both;
 }
+h1 {
+	font-size: 40px;
+    color: #ffc;
+    margin-bottom: 5px;
+}
+h1 a {
+	border-bottom: none !important;
+}
 
 
 /*******************
@@ -96,6 +104,81 @@ strong {
 ********************/
 
 
+
 /*******************
 * Content
 ********************/
+
+#container {
+	background: #444 url('texture-gray.png');
+}
+#slideheaders {
+	background: rgba(0,123,34,1);
+	padding: 5px 20px;
+}
+
+
+/*******************
+* Slides
+********************/
+
+div.lighttable li {
+	list-style: none;
+}
+div.slide {
+	display: inline-block;
+	width: 300px;
+	margin: 7px;
+	box-shadow: 2px 5px 8px 0px rgba(0,0,0,.5);
+}
+
+div.slide img {
+	width: 100%;
+}
+
+div.pdflink a {
+	float: right;
+	border: 1px dotted #ffc;
+	padding: 10px;
+	width: 100px;
+	text-align: center;
+}
+div.pdflink a:hover {
+	background: rgba(255,255,204,.5);
+}
+div.pdflink sdfa:hover {
+	background: rgba(255,255,204,.5);
+	background: rgba(255,255,204,1);
+	color: rgba(0,123,34,1);
+}
+div.pdflink img {
+	width: 80px;
+	margin-bottom: 5px;
+	box-shadow: 2px 5px 8px 0px rgba(0,0,0,.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,25 +8,25 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # main
-    url(r'^$', 'main.views.index', name='index'),
-    url(r'^s/(.*)$', 'main.views.slides', name='slides'),
+    url(settings.URL_PREFIX + r'$', 'main.views.index', name='index'),
+    url(settings.URL_PREFIX + r's/(.*)$', 'main.views.slides', name='slides'),
 
     # just for testing
-    url(r'^fake500/$',  'main.views.fake500',                      name='fake500'),
+    url(settings.URL_PREFIX + r'fake500/$',  'main.views.fake500',                      name='fake500'),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (settings.URL_PREFIX + r'admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
+    (settings.URL_PREFIX + r'admin/', include(admin.site.urls)),
 )
 
 
 if settings.SERVE_STATIC:
     urlpatterns += patterns('',
         # Static serve for development
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        (settings.URL_PREFIX + r'media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     )
 
 

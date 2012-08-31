@@ -17,6 +17,7 @@ SITE_BASE_DIR              = locals().get('SITE_BASE_DIR', os.path.abspath(os.pa
 SERVE_STATIC               = locals().get('SERVE_STATIC', False) # whether to enable static serve
 ADMINS                     = locals().get('ADMINS', tuple())
 MANAGERS                   = locals().get('MANAGERS', ADMINS)
+URL_PREFIX                 = locals().get('URL_PREFIX', r'^')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
