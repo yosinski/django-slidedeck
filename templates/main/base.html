@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" content="en-us" />
+        <title>{% block title %}MLSS 2012 Kyoto Slides{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}all.css" />
+        <link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" />
+        {% block extrahead %}{% endblock %}
+    </head>
+    <!--[if !IE]>--><body class="W3C"><!--<![endif]-->
+    <!--[if IE 8]><body class="IE IE8 IE78 IE678"><![endif]-->
+    <!--[if IE 7]><body class="IE IE7 IE67 IE78 IE567 IE678"><![endif]-->
+    <!--[if IE 6]><body class="IE IE6 IE56 IE67 IE567 IE678"><![endif]-->
+    <!--[if IE 5]><body class="IE IE5 IE56 IE567"><![endif]-->
+
+	<div id="container">
+	{% block container %}
+	{% endblock %}
+    </div>
+
+    {% if debug %}
+    <div id="debug">
+      <p>debug
+        <a href="http://validator.w3.org/check?uri=referer">X</a>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">C</a>
+        <a href="http://validator.w3.org/unicorn/check?ucn_uri=referer">U</a></p>
+    </div>
+    <br />
+    <br />
+    {% else %}
+    {% endif %}
+
+    </body>
+</html>
