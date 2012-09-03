@@ -7,7 +7,8 @@ import urllib2
 
 pdfs = [
     #['http://stat.wharton.upenn.edu/~rakhlin/ml_summer_school.pdf', 'Rakhlin-Statistical-Learning-Theory'],
-    ['https://www.dropbox.com/s/qxedx9oj37gyjgf/srl-mlss.pdf', 'Domingos-Statistical-Relational-Learning'],
+    #['https://www.dropbox.com/s/qxedx9oj37gyjgf/srl-mlss.pdf', 'Domingos-Statistical-Relational-Learning'],
+    ['https://dl.dropbox.com/s/qxedx9oj37gyjgf/srl-mlss.pdf?dl=1', 'Domingos-Statistical-Relational-Learning'],
     #['https://dl.dropbox.com/u/11277113/mlss_tsuda_mining_chapter1.pdf', 'Tsuda-Graph-Mining1'],
     #['https://dl.dropbox.com/u/11277113/mlss_tsuda_learning_chapter2.pdf', 'Tsuda-Graph-Mining2'],
     #['https://dl.dropbox.com/u/11277113/mlss_tsuda_kernel_chapter3.pdf', 'Tsuda-Graph-Mining3'],
