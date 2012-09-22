@@ -2,11 +2,12 @@
 
 PDF="$1"
 PNG_ROOT="$2"
-SIZE_INTERMEDIATE="$3"
-SIZE_FINAL="$4"
-EXTRA_NAME="$5"
+RESOLUTION="$3"
+SIZE_INTERMEDIATE="$4"
+SIZE_FINAL="$5"
+EXTRA_NAME="$6"
 
-gs -sDEVICE=pngalpha -dNOPAUSE -sOutputFile="${PNG_ROOT}_%03d.png" -r150 "$PDF" < /dev/null
+gs -sDEVICE=pngalpha -dNOPAUSE -sOutputFile="${PNG_ROOT}_%03d.png" -r${RESOLUTION} "$PDF" < /dev/null
 for file in `ls ${PNG_ROOT}_???.png`; do
     echo $file
     convert -layers flatten -background white "$file" "$file.tmp.png"

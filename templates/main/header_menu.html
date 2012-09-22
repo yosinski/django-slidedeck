@@ -1,14 +1,19 @@
 {% extends 'main/base.html' %}
-
+{% load extras %}
 
 
 {% block container %}
 <div id="header">
+<p><a href="/">yosinski.com</a> / {{ request.path|header_path_links }}</p>
 </div>
 
 <div id="content">
 {% block content %}
 {% endblock %}
+</div>
+
+<div id="footer">
+<p>Site based on the <a href="https://github.com/yosinski/django-slidedeck">django-slides</a> framework by <a href="http://yosinski.com/">Jason Yosinski</a>.<br />Find a bug? Email Jason or submit a pull request on Github.</p>
 </div>
 
 {% endblock %}

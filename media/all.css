@@ -1,3 +1,5 @@
+/* @override http://yosinski.com/mlss12/media/all.css */
+
 /*******************
 * First, a reset
 ********************/
@@ -27,7 +29,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 body {
     line-height: 1;
     color: black;
-    background: white;
 }
 ol, ul {
     list-style: none;
@@ -57,9 +58,10 @@ blockquote, q {
 
 body {
     font-family: Georgia, 'Times New Roman', Times, serif;
+    background: #cfc;
 }
 a {
-    color: #ffc;
+    color: #5a5;
     text-decoration: none;
     border-bottom: 1px dotted;
 }
@@ -91,11 +93,13 @@ strong {
 }
 h1 {
 	font-size: 40px;
-    color: #ffc;
     margin-bottom: 5px;
 }
 h1 a {
 	border-bottom: none !important;
+}
+acronym {
+	border-bottom: 1px dotted;
 }
 
 
@@ -103,7 +107,24 @@ h1 a {
 * Header/Menu
 ********************/
 
+#header {
+	background: #5a5;
+    font-family: "Verdana", "Helvetica", "Tahoma", sans-serif;
+}
 
+#footer {
+    font-family: "Verdana", "Helvetica", "Tahoma", sans-serif;
+	background: #cfc;
+	text-align: center;
+	min-height: 80px;
+	box-shadow: 0px -5px 8px 0px rgba(0,0,0,.5);
+	margin-top: 20px;
+	padding: 10px;
+}
+#footer p {
+	line-height: 1.4;
+	font-size: 80%;
+}
 
 /*******************
 * Content
@@ -114,27 +135,88 @@ h1 a {
 }
 #slideheaders {
 	background: rgba(0,123,34,1);
+	background: rgba(255,255,204,1);
+	background: #cfc;
 	padding: 5px 20px;
+    color: #ffc;
+    color: black;
+	box-shadow: 0px 5px 8px 0px rgba(0,0,0,.5);
+	margin-bottom: 10px;
 }
-
+#slideheaders h1 {
+	color: black;
+}
+#slideheaders h1 a {
+	color: black;
+}
+p.about {
+	float: right;
+}
 
 /*******************
 * Slides
 ********************/
 
-div.lighttable li {
-	list-style: none;
+div.lighttable {
+	padding: 0 10px;
 }
 div.slide {
 	display: inline-block;
+	position: relative;
 	width: 300px;
 	margin: 7px;
 	box-shadow: 2px 5px 8px 0px rgba(0,0,0,.5);
 }
-
+div.slide.selected {
+	box-shadow: 2px 5px 8px 0px rgba(120,172,216,1);
+}
 div.slide img {
 	width: 100%;
 }
+
+div.lighttable div.slide div.number {
+	display: none;
+}
+div.lighttable.showSlideNumbers div.slide div.number {
+	display: inherit;
+}
+div.slide div.number {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+div.slide div.number p {
+	color: rgba(128, 128, 128, .75);
+	font-size: 20px;
+	margin: 0 2px 3px 0;
+}
+
+div.lighttable div.slide div.text {
+	color: rgba(0,0,0,0);
+	font-size: 14px;
+}
+div.lighttable.showTextOverlay div.slide div.text {	color: rgba(0,0,0,1);
+	background: rgba(255,255,200,.75);
+}
+div.slide div.text {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	height: 100%;
+}
+div.slide div.text p {
+	margin: 5px;
+}
+div.slide div.text p::selection {
+	color: rgba(0,0,0,1);
+	background: yellow;
+}
+div.slide div.text p::-moz-selection {
+	color: rgba(0,0,0,1);
+	background: yellow;
+}
+
 
 div.pdflink a {
 	float: right;
@@ -156,8 +238,34 @@ div.pdflink img {
 	margin-bottom: 5px;
 	box-shadow: 2px 5px 8px 0px rgba(0,0,0,.5);
 }
-
-
+div#sizeSlider {
+	z-index: 1;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background: rgba(0,0,0,.6);
+	padding: 8px;
+	font-size: 15px;
+	color: white;
+}
+div#sizeSlider p {
+	float: left;
+	margin-right: 1em;
+}
+div#sizeSlider div.slider {
+	float: left;
+	width: 300px;
+	position: relative;
+	top: .3em;
+}
+#sizeSlider .ui-slider .ui-slider-handle {
+	width: 1.0em;
+	height: 1.4em;
+	top: -.55em;
+}
+#sizeSlider .ui-slider.ui-slider-horizontal {
+	height: .5em;
+}
 
 
 

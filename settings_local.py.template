@@ -1,6 +1,7 @@
 # Local settings. Copy this file to settings_local.py and modify, but do not add to repository.
 
-SHORT_SITE_URL     = '127.0.0.1:8000'
+SHORT_SITE_URL_BASE = '127.0.0.1:8000'
+SHORT_SITE_URL      = SHORT_SITE_URL_BASE + '/mlss12'
 
 DATABASES = {
     'default': {

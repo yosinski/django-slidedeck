@@ -20,6 +20,13 @@ def index(request):
 
 
 
+
+def about(request):
+    return render_to_response('main/about.html',
+                              context_instance = RequestContext(request))
+
+
+
 def slides(request, slug):
     try:
         slidedeck = Slidedeck.objects.get(slug = slug)

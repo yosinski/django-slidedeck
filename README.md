@@ -8,3 +8,4 @@ To add
  * recenter using js
  * add google site search
  * slide hover -> bigger link -> enlarge and select
+ * about page

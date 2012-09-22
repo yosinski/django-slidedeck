@@ -18,6 +18,7 @@ SERVE_STATIC               = locals().get('SERVE_STATIC', False) # whether to en
 ADMINS                     = locals().get('ADMINS', tuple())
 MANAGERS                   = locals().get('MANAGERS', ADMINS)
 URL_PREFIX                 = locals().get('URL_PREFIX', r'^')
+APPEND_SLASH               = locals().get('APPEND_SLASH', True)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -33,6 +34,7 @@ TIME_ZONE = 'US/Eastern'
 LANGUAGE_CODE = 'en-us'
 
 MEDIA_ROOT         = SITE_BASE_DIR + '/media/'
+SITE_URL_BASE      = 'http://' + SHORT_SITE_URL_BASE    # does not include prefix
 SITE_URL           = 'http://' + SHORT_SITE_URL
 MEDIA_URL          = 'http://' + SHORT_SITE_URL + '/media/'
 
@@ -113,3 +115,8 @@ INSTALLED_APPS = (
 # Extra template debug
 if DEBUG and EXTRA_TEMPLATE_DEBUG:
     TEMPLATE_STRING_IF_INVALID = 'ERROR(%s)'
+
+slideImgResolution  = 80
+slideImgOrigSize    = 2000
+slideImgThumbSize   = 200
+slideImgThumbString = '.thumb'

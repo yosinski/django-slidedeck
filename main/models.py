@@ -71,6 +71,23 @@ class Slidedeck(models.Model):
 
 
 
+def genSlideImages(instance):
+    #print 'trying', settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
+    basepath = instance.getImageBasePath()
+    #print 'trying', settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
+    print '-'*40, 'genSlideImages: start'
+    runCmd((settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
+            instance.pdf.path,
+            basepath,
+            str(settings.slideImgResolution),
+            str(settings.slideImgOrigSize),
+            str(settings.slideImgThumbSize),
+            settings.slideImgThumbString),
+           verbose = True)
+    print '-'*40, 'genSlideImages: done'
+
+
+
 def slidedeckPreSave(sender, instance, **kwargs):
     pass
 
@@ -96,13 +113,8 @@ def slidedeckPostSave(sender, instance, **kwargs):
             except:
                 raise Exception('expected int but got %s' % repr(out))
 
-            print 'trying', settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
-            basepath = instance.getImageBasePath()
-            print 'trying', settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
-            runCmd((settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
-                    instance.pdf.path,
-                    basepath,
-                    '2000', '400', '.thumb'), verbose = True)
+            print 'Skipping images!'
+            #genSlideImages(instance)
             modified = True
             
         if instance.text == '':
