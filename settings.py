@@ -116,7 +116,7 @@ INSTALLED_APPS = (
 if DEBUG and EXTRA_TEMPLATE_DEBUG:
     TEMPLATE_STRING_IF_INVALID = 'ERROR(%s)'
 
-slideImgResolution  = 80
+slideImgResolution  = 160
 slideImgOrigSize    = 2000
 slideImgThumbSize   = 200
 slideImgThumbString = '.thumb'
