@@ -10,13 +10,19 @@
 
 
 
+
+
+{% block extracontainer %}slides{% endblock %}
+
+
+
 {% block content %}
 
 <div class="slidedeck">
 
 <div id="slideheaders">
-<p class="about"><a href="{% url about %}">about</a></p>
-<h1><a href="{% url index %}">&laquo;</a> {{ slidedeck.title }}</h1>
+{% comment %}<p class="about"><a href="{% url about %}">about</a></p>{% endcomment %}
+<h2><a href="{% url index %}">&laquo;</a> {{ slidedeck.title }}</h2>
 
 {% if slidedeck.pdf %}
 {% with slidedeck.getSlides as slides %}
@@ -24,7 +30,7 @@
 {% endwith %}
 {% endif %}
 
-<h2>{{ slidedeck.presenter|safe }}</h2>
+<h3>{{ slidedeck.presenter|safe }}</h3>
 <p class="abstract">{{ slidedeck.abstract|safe }}</p>
 <div class="clearboth"></div>
 </div>

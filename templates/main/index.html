@@ -2,15 +2,32 @@
 
 
 
+{% block extracontainer %}index{% endblock %}
+
+
+
 {% block content %}
 
-<h1>Welcome</h1>
+<h1>Machine Learning Summer School Slides</h1>
+
+<p class="intro">These are slides from the talks and tutorials given at the
+<a href="http://www.iip.ist.i.kyoto-u.ac.jp/mlss12/">2012 Machine
+Learning Summer School</a> in Kyoto, Japan (27 August &ndash; 7
+September 2012). Slides are compiled from pdfs
+available <a href="http://www.iip.ist.i.kyoto-u.ac.jp/mlss12/doku.php?id=schedule">here</a>.</p>
 
 {% for slidedeck in slidedecks %}
 <div class="slidedeck">
-<h1><a href="{% url slides slidedeck.slug %}">{{ slidedeck.title }}</a></h1>
-<h2>{{ slidedeck.presenter|safe }}</h2>
-<p class="abstract">{{ slidedeck.abstract|safe }}</p>
+<h2><a href="{% url slides slidedeck.slug %}">{{ slidedeck.title }}</a></h2>
+
+{% if slidedeck.pdf %}
+{% with slidedeck.getSlides as slides %}
+<div class="pdflink"><a href="{{ slidedeck.pdf.url }}"><img src="{{ slides.0.imgThumbUrl }}" alt="first slide" /><br />(pdf)</a></div>
+{% endwith %}
+{% endif %}
+
+<h3>{{ slidedeck.presenter|safe }}</h3>
+<p class="abstract">Abstract: {{ slidedeck.abstract|safe }}</p>
 </div>
 {% endfor %}
 
