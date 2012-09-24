@@ -12,7 +12,7 @@ import settings
 
 
 def index(request):
-    slidedecks = Slidedeck.objects.all().order_by('order')
+    slidedecks = Slidedeck.objects.all().filter(active = True).order_by('order')
 
     return render_to_response('main/index.html',
                               {'slidedecks': slidedecks},

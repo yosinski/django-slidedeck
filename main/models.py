@@ -19,6 +19,8 @@ class Slidedeck(models.Model):
     title          = models.TextField(help_text = 'Unformatted')
     presenter      = models.TextField(help_text = 'Formatted')
     abstract       = models.TextField()
+
+    active         = models.BooleanField(default = True)
     
     # Uploaded
     pdf            = models.FileField(upload_to = 'slides', storage=OverwriteStorage(), blank = True)
@@ -66,8 +68,9 @@ class Slidedeck(models.Model):
         return ret
 
     def __unicode__(self):
-        return 'Slidedeck(pk=%s, title=%s)' % (self.pk if self.pk is not None else 'None',
-                                               repr(self.title))
+        return 'Slidedeck(pk=%s, presenter=%s, title=%s)' % (self.pk if self.pk is not None else 'None',
+                                                             repr(self.presenter),
+                                                             repr(self.title))
 
 
 
