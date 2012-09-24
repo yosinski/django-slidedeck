@@ -1,6 +1,7 @@
 import os
 
 from django.shortcuts import render_to_response
+from django.template.loader import render_to_string
 from django.http import HttpResponseNotFound, HttpResponseServerError, HttpResponseRedirect, Http404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
