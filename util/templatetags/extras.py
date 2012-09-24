@@ -24,12 +24,12 @@ def header_path_links(value):
     path = value.strip().strip('/')
 
     link = settings.SITE_URL_BASE.strip('/')
-    print settings.APPEND_SLASH
+    #print settings.APPEND_SLASH
     ret = ''
-    print 'parts are', repr(path.split('/'))
+    #print 'parts are', repr(path.split('/'))
     for part in path.split('/'):
         link += '/' + part
-        print 'part is', part, 'link is', link
+        #print 'part is', part, 'link is', link
         append = '/' if settings.APPEND_SLASH else ''
         ret += ' / ' + '<a href="%s">%s</a>' % (link + append, part)
     ret = ret[3:]
