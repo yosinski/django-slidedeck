@@ -138,7 +138,7 @@ acronym {
 	background: white;
 }
 #container.slides {
-	background: #444 url('texture-gray.png');
+	background: #444 url('texture-gray.png') fixed;
 }
 #container #content {
 	width: 800px;
