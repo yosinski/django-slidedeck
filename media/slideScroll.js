@@ -46,11 +46,14 @@ var getII = function() {
 //}
 
 $(document).ready(function() {
+    // JBY broke in jquery 1.9
+    // reenabled while using jquery 1.8
     if (($.browser.safari) || ($.browser.chrome)) {
         bodyElem = $("body")
     } else {
         bodyElem = $("html,body")
     }
+    //bodyElem = $("html,body")
 
     $('div.slide').each(function() {
         divList.push($(this));
