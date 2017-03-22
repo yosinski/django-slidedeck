@@ -108,9 +108,13 @@ acronym {
 #header {
 	background: #5a5;
     font-family: "Verdana", "Helvetica", "Tahoma", sans-serif;
+    color: white;
+    padding: 4px 8px 6px;
+	font-size: 80%;
 }
 #header a {
-	border-bottom: 1px dotted;
+    border-bottom: none;
+	color: inherit;
 }
 #header a:hover {
 	border-bottom: 1px solid;
