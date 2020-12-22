@@ -3,7 +3,7 @@
 import os
 
 try:
-    from settings_local import *
+    from .settings_local import *
 except ImportError:
     raise Exception('Missing settings_local.py. Did you create it from the template?')
 
@@ -13,14 +13,16 @@ DANGEROUS_ALL_IPS_INTERNAL = locals().get('DANGEROUS_ALL_IPS_INTERNAL', False)
 EXTRA_TEMPLATE_DEBUG       = locals().get('EXTRA_TEMPLATE_DEBUG', False)
 TEMPLATE_DEBUG             = locals().get('TEMPLATE_DEBUG', DEBUG or EXTRA_TEMPLATE_DEBUG)
 CONTACT_EMAILS             = locals().get('CONTACT_EMAILS', ['jason.yosinski@gmail.com'])
-SITE_BASE_DIR              = locals().get('SITE_BASE_DIR', os.path.abspath(os.path.dirname(__file__)))
 SERVE_STATIC               = locals().get('SERVE_STATIC', False) # whether to enable static serve
 ADMINS                     = locals().get('ADMINS', tuple())
 MANAGERS                   = locals().get('MANAGERS', ADMINS)
-URL_PREFIX                 = locals().get('URL_PREFIX', r'^')
+URL_PREFIX                 = locals().get('URL_PREFIX', r'')
 APPEND_SLASH               = locals().get('APPEND_SLASH', True)
 
 ALLOWED_HOSTS = [SHORT_SITE_URL_BASE]
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -35,10 +37,12 @@ TIME_ZONE = 'US/Eastern'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-MEDIA_ROOT         = SITE_BASE_DIR + '/media/'
-SITE_URL_BASE      = 'http://' + SHORT_SITE_URL_BASE    # does not include prefix
+MEDIA_ROOT         = BASE_DIR + '/media/'
+STATIC_ROOT        = BASE_DIR + '/static/'
 SITE_URL           = 'http://' + SHORT_SITE_URL
 MEDIA_URL          = 'http://' + SHORT_SITE_URL + '/media/'
+STATIC_URL         = 'http://' + SHORT_SITE_URL + '/static/'
+SITE_URL_BASE      = 'http://' + SHORT_SITE_URL_BASE
 
 if DANGEROUS_ALL_IPS_INTERNAL:
     # Make DEBUG available on all IPs
@@ -54,9 +58,9 @@ if DANGEROUS_ALL_IPS_INTERNAL:
         '*.*.*.*', # Use Debug carefully with this!
         ])
 
-TEMPLATE_DIRS = (
-    SITE_BASE_DIR + '/templates',
-)
+#TEMPLATE_DIRS = (
+#    BASE_DIR + '/templates',
+#)
 
 SITE_ID = 1
 
@@ -80,15 +84,26 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
+#MIDDLEWARE_CLASSES = (
+#    'django.contrib.sessions.middleware.SessionMiddleware',
+#    'django.middleware.common.CommonMiddleware',
+#    'django.middleware.csrf.CsrfViewMiddleware',
+#    'django.contrib.auth.middleware.AuthenticationMiddleware',
+#    'django.contrib.messages.middleware.MessageMiddleware',
+#)
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-)
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
-ROOT_URLCONF = 'urls'
+
+ROOT_URLCONF = 'slidedeck.urls'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -108,10 +123,29 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'django.contrib.humanize',
+    'django.contrib.staticfiles',
     'main',
     'util',
 )
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+            ],
+        },
+    },
+]
+#if DEBUG:
+#    TEMPLATES[0]['OPTIONS']['string_if_invalid'] =  '{{ INVALID: %s }}'
 
 
 # Extra template debug

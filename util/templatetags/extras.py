@@ -2,7 +2,7 @@ from django.utils.safestring import mark_safe
 from django.template.defaultfilters import stringfilter
 from django import template
 
-import settings
+import slidedeck.settings as settings
 
 
 register = template.Library()
@@ -15,7 +15,6 @@ def stripp(value, arg=None):
         return value.strip()
     else:
         return value.strip(arg)
-
 
 
 @register.filter

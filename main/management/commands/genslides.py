@@ -13,12 +13,12 @@ class Command(BaseCommand):
             decks = Slidedeck.objects.filter(pk__in = args)
             operate = True
             
-        print >>self.stdout, 'Number of Slidedecks: ', decks.count()
+        print('Number of Slidedecks: ', decks.count(), file=self.stdout)
         for slidedeck in decks:
-            print >>self.stdout, '  ', slidedeck
+            print('  ', slidedeck, file=self.stdout)
 
         if not operate:
-            print >>self.stdout, 'Specify which sliddeck you want (by pk) to generate slide images.'
+            print('Specify which sliddeck you want (by pk) to generate slide images.', file=self.stdout)
             return
 
         for deck in decks:

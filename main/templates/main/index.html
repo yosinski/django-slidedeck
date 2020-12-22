@@ -18,7 +18,7 @@ available <a href="http://www.iip.ist.i.kyoto-u.ac.jp/mlss12/doku.php?id=schedul
 
 {% for slidedeck in slidedecks %}
 <div class="slidedeck">
-<h2><a href="{% url slides slidedeck.slug %}">{{ slidedeck.title }}</a></h2>
+<h2><a href="{% url 'slides' slidedeck.slug %}">{{ slidedeck.title }}</a></h2>
 
 {% if slidedeck.pdf %}
 {% with slidedeck.getSlides as slides %}

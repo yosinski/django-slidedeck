@@ -7,7 +7,7 @@ from django.db.models.signals import pre_save, post_save
 
 from util.helper import runCmd, randomString, DuckStruct
 from util.storage import OverwriteStorage
-import settings
+import slidedeck.settings as settings
 
 
 
@@ -48,7 +48,7 @@ class Slidedeck(models.Model):
         baseUrl = self.getImageBaseUrl()
         if baseUrl and self.pages > 0:
             thumbstr = '.thumb' if thumb else ''
-            return ['%s_%03d%s.png' % (baseUrl, ii+1, thumbstr) for ii in xrange(self.pages)]
+            return ['%s_%03d%s.png' % (baseUrl, ii+1, thumbstr) for ii in range(self.pages)]
 
     def getImageThumbUrls(self):
         return self.getImageUrls(thumb = True)
@@ -56,7 +56,7 @@ class Slidedeck(models.Model):
     def getSlides(self):
         '''Gets a list of slide objects'''
 
-        slideTranscriptions = self.text.strip(u'\x0c').split(u'\x0c')
+        slideTranscriptions = self.text.strip('\x0c').split('\x0c')
         if self.pages > 0 and len(slideTranscriptions) != self.pages:
             raise Exception('Expected transcriptions of length %d but got %d' % (self.pages, len(slideTranscriptions)))
 
@@ -78,7 +78,7 @@ def genSlideImages(instance):
     #print 'trying', settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
     basepath = instance.getImageBasePath()
     #print 'trying', settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
-    print '-'*40, 'genSlideImages: start'
+    print('-'*40, 'genSlideImages: start')
     runCmd((settings.SITE_BASE_DIR + '/scripts/pdf2pngs',
             instance.pdf.path,
             basepath,
@@ -87,7 +87,7 @@ def genSlideImages(instance):
             str(settings.slideImgThumbSize),
             settings.slideImgThumbString),
            verbose = True)
-    print '-'*40, 'genSlideImages: done'
+    print('-'*40, 'genSlideImages: done')
 
 
 
@@ -97,10 +97,10 @@ def slidedeckPreSave(sender, instance, **kwargs):
 
 
 def slidedeckPostSave(sender, instance, **kwargs):
-    print 'slidedeckPostSave:', instance.pdf, instance.pdf.path
-    print 'slidedeckPostSave:', sender
-    print 'slidedeckPostSave:', instance
-    print 'slidedeckPostSave:', kwargs
+    print('slidedeckPostSave:', instance.pdf, instance.pdf.path)
+    print('slidedeckPostSave:', sender)
+    print('slidedeckPostSave:', instance)
+    print('slidedeckPostSave:', kwargs)
 
     if instance.pdf:
         # still need to process
@@ -110,13 +110,13 @@ def slidedeckPostSave(sender, instance, **kwargs):
         if instance.pages == -1:
             out,err = runCmd(('gs', '-q', '-dNODISPLAY', '-c',
                               '(%s) (r) file runpdfbegin pdfpagecount = quit' % instance.pdf.path))
-            print 'Pages:', out
+            print('Pages:', out)
             try:
                 instance.pages = int(out)
             except:
                 raise Exception('expected int but got %s' % repr(out))
 
-            print 'Skipping images!'
+            print('Skipping images!')
             #genSlideImages(instance)
             modified = True
             
@@ -129,15 +129,15 @@ def slidedeckPostSave(sender, instance, **kwargs):
             textUnicode = uu.unicode_markup
             instance.text = textUnicode.encode('ascii', 'ignore')
             modified = True
-            print 'got text: %s...' % instance.text[:100]
+            print('got text: %s...' % instance.text[:100])
 
         if instance.slug == '':
             instance.slug = os.path.split(instance.getImageBasePath())[-1]
             modified = True
-            print 'set slug to:', instance.slug
+            print('set slug to:', instance.slug)
 
         if modified:
-            print 'saving'
+            print('saving')
             instance.save()
 
 

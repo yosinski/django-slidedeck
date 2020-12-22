@@ -9,7 +9,7 @@ class OverwriteStorage(FileSystemStorage):
         """
         # If the filename already exists, remove it as if it was a true file system
         if self.exists(name):
-            print 'name', name, 'exists. Deleting.'
+            print('name', name, 'exists. Deleting.')
             self.delete(name)
             #os.remove(os.path.join(settings.MEDIA_ROOT, name))
         return name

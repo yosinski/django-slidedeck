@@ -11,7 +11,7 @@ randChars  = '%s%s' % (string.ascii_letters, string.digits)
 
 
 def randomString(length = 10):
-    return ''.join(random.choice(randChars) for ii in xrange(length))
+    return ''.join(random.choice(randChars) for ii in range(length))
 
 
 
@@ -19,11 +19,11 @@ class DuckStruct(object):
     '''Use to store anything!'''
     
     def __init__(self, **kwargs):
-        for k,v in kwargs.items():
+        for k,v in list(kwargs.items()):
             setattr(self, k, v)
 
     def __repr__(self):
-        rep = ['%s=%s' % (k, repr(v)) for k,v in self.__dict__.items()]
+        rep = ['%s=%s' % (k, repr(v)) for k,v in list(self.__dict__.items())]
         return 'DuckStruct(%s)' % ', '.join(rep)
 
 
@@ -37,8 +37,8 @@ def runCmd(args, verbose = False):
     code = proc.wait()
 
     if code != 0:
-        print out
-        print err
+        print(out)
+        print(err)
         raise Exception('Got error from running command with args ' + repr(args))
 
     return out, err

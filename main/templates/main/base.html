@@ -1,13 +1,15 @@
+{% load static %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Content-Language" content="en-us" />
         <title>{% block title %}MLSS 2012 Kyoto Slides - yosinski.com{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}all.css" />
-        <link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" />
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static "all.css" %}" />
+        <link rel="shortcut icon" href="{% static "favicon.ico" %}" />
 
-        <script type="text/javascript" src="{{ MEDIA_URL }}jquery.min.js"></script>
+        <script type="text/javascript" src="{% static "jquery.min.js" %}"></script>
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 

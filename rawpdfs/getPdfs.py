@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 import sys
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 
 
 
@@ -26,12 +26,12 @@ def main():
     for pdfUrl, pdfBaseName in pdfs:
         pdfFilename = 'MLSS-2012-%s.pdf' % pdfBaseName
 
-        print 'Fetching %s to %s...' % (pdfUrl, pdfFilename),
+        print('Fetching %s to %s...' % (pdfUrl, pdfFilename), end=' ')
         sys.stdout.flush()
         with open(pdfFilename, 'w') as ff:
-            page = urllib2.urlopen(pdfUrl)
+            page = urllib.request.urlopen(pdfUrl)
             ff.write(page.read())
-        print 'done.'
+        print('done.')
 
 
 
